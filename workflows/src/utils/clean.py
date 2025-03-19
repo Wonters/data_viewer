@@ -1,4 +1,6 @@
 from typing import Tuple
+
+
 def clean_gather_results(results) -> Tuple[list, list]:
     """
     Extract failed index and clean the results

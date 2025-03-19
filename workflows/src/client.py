@@ -1,6 +1,7 @@
 import httpx
 from contextlib import asynccontextmanager
 
+
 class RestClient:
     def __init__(self, host: str, port: int) -> None:
         self.host = host
@@ -21,6 +22,6 @@ class RestClient:
         async with self.client() as client:
             return await client.get(f"{self.api_url}/{path}")
 
-    async def post(self, path:str):
+    async def post(self, path: str):
         async with self.client() as client:
             return await client.post(f"{self.api_url}/{path}")

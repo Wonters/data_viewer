@@ -111,6 +111,16 @@ POST /api/extract/
 GET /api/dataset/1/
 ```
 
+### Development 
+#### NPM 
+```bash
+npm init
+npm install webpack webpack-cli --save-dev
+npm run build (production)
+npm run dev (development)
+```
+
+
 ## 📜 Licences & Contribution
 Projet open-source sous licence **MIT**. Contributions bienvenues ! 🚀
 

@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import ListCreateDatasetView
+from .views import ListCreateDatasetView, ListDatasetView
 
 urlpatterns = [
-    path('blog/', ListCreateDatasetView.as_view()),
+    path("api/", ListCreateDatasetView.as_view()),
+    path("view/", ListDatasetView.as_view()),
 ]

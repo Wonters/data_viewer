@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env
+      - env/.env
 
   orchestrator:
     image: prefecthq/prefect:latest
@@ -29,7 +29,7 @@ services:
     image: minio/minio
     command: server /data --console-address ":9001"
     env_file:
-      - .minio
+      - env/.minio
     volumes:
       - minio_data:/data
     ports:

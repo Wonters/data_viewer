@@ -1,0 +1,11 @@
+@import "variables";
+@import "bootstrap/scss/bootstrap";
+
+.custom-card {
+    --bs-card-bg: #dd0d0d;
+    --bs-card-border-color: #003366;
+    --bs-card-border-width: 2px;
+    --bs-card-border-radius: 10px;
+    --bs-card-box-shadow: 4px 4px 12px rgba(0, 51, 102, 0.3);
+}
+

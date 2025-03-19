@@ -1,0 +1,32 @@
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viewer</title>
+  <link rel="stylesheet" href="{% static 'dist/main.css' %}">
+</head>
+<body>
+<div class="d-flex align-items-center justify-content-center min-vh-100">
+  <div class="container text-center p-4">
+    <h2 class="mb-4">Dataset Viewer</h2>
+    <div class="row justify-content-center">
+      {% for dataset in datasets %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card custom-card">
+          <div class="card-body">
+            <h5 class="card-title">{{ dataset.name }}</h5>
+            <p class="card-text">{{ dataset.description }}</p>
+            <a href="{{ dataset.url }}" class="btn btn-primary">{% trans "Voir la page web" %}</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Chargement du JS généré par Webpack -->
+<script src="{% static 'dist/main.bundle.js' %}"></script>
+</body>
+</html>
