@@ -1,0 +1,46 @@
+services:
+  server:
+    build: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./src:/app/src
+    stdin_open: true
+    command: /bin/bash
+    tty: true
+    depends_on:
+      - db
+    env_file:
+      - .env
+
+  orchestrator:
+    image: prefecthq/prefect:latest
+    tty: true
+    stdin_open: true
+    ports:
+      - 5000:5000
+    volumes:
+      - ./workflows:/workflows
+      - ./src/blog/models.py:/workflows/models.py
+    depends_on:
+      - db
+
+  warehouse:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    env_file:
+      - .minio
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"  # API MinIO
+      - "9001:9001"  # Console MinIO
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
