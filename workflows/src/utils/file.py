@@ -17,16 +17,19 @@ from ..settings import (
 
 logger = logging.getLogger(f"{PARENT_LOGGER}.{__name__}")
 
+
 def chunk_string_generator(s, chunk_size=4096):
     """Générateur qui renvoie des morceaux de chunk_size caractères"""
     for i in range(0, len(s), chunk_size):
-        yield s[i:i + chunk_size]
+        yield s[i : i + chunk_size]
+
 
 def hash_content(content):
     hasher = hashlib.sha256()
     for chunk in chunk_string_generator(content, 4096):
         hasher.update(chunk)
     return hasher.hexdigest()
+
 
 def hash_file(file_path):
     """Calcule le hash SHA-256 d'un fichier."""
@@ -57,7 +60,7 @@ async def save_in_s3(content: BytesIO, blob_name: str):
             raise e
 
 
-async def write_blob(content: BytesIO,filepath:Path, storage: str = STORAGE):
+async def write_blob(content: BytesIO, filepath: Path, storage: str = STORAGE):
     """Store file with a unique hash."""
     if storage == "s3":
         await save_in_s3(content, filepath.name)

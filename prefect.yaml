@@ -1,14 +1,30 @@
 logging:
   level: DEBUG
-  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-  datefmt: "%Y-%m-%d %H:%M:%S"
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  datefmt: '%Y-%m-%d %H:%M:%S'
   handlers:
     file:
       class: logging.FileHandler
       formatter: default
-      filename: "prefect_logs.log"
+      filename: prefect_logs.log
   loggers:
     prefect:
       level: DEBUG
       handlers: [file]
       propagate: false
+deployments:
+- name: extract_datasets
+  version:
+  tags: []
+  concurrency_limit:
+  description:
+  entrypoint: workflows/dataset_extraction_flow.py:extract_datasets
+  parameters: {}
+  work_pool:
+    name: process-extract
+    work_queue_name:
+    job_variables: {}
+  schedules: []
+  pull:
+  - prefect.deployments.steps.set_working_directory:
+      directory: /Volumes/Data02/shift/dataset_viewer

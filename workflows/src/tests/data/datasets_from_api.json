@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "tags": [],
+    "link": "http://127.0.0.1:8000/blog/api/datasets/1/",
+    "name": "Effet Compton",
+    "description": "Page wikipédia sur l'effet compton",
+    "url": "https://fr.wikipedia.org/wiki/Diffusion_Compton",
+    "metadata": null
+  }
+]

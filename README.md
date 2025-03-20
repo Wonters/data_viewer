@@ -119,7 +119,15 @@ npm install webpack webpack-cli --save-dev
 npm run build (production)
 npm run dev (development)
 ```
+#### Docker Environment
+Use the docker-compose-dev.yml to have a broker, a warehouse and db 
 
+#### Queue Celery
+
+```bash
+cd src
+celery -A core worker --loglevel=info --logfile log/worker.log --pidfile celery.pid
+```
 
 ## 📜 Licences & Contribution
 Projet open-source sous licence **MIT**. Contributions bienvenues ! 🚀

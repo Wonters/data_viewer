@@ -1,4 +1,6 @@
 ./idea
 __pycache__
 blobs/
+log/
 node_modules/
+*.pid

@@ -9,6 +9,7 @@ from .settings import BLOB_DIR, STORAGE, PARENT_LOGGER
 
 logger = logging.getLogger(f"{PARENT_LOGGER}.{__name__}")
 
+
 class StorageMixin(BaseModel):
     _storage: Path = BLOB_DIR
     blob_name: Optional[str] = None
@@ -55,6 +56,7 @@ class UrlFileMixin(StorageMixin):
     """
     Mixin to download a file from a url
     """
+
     url: str
 
     async def retrieve(self):

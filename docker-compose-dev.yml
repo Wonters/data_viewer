@@ -1,0 +1,31 @@
+services:
+  warehouse:
+    image: minio/minio
+    container_name: "dataviewer-storage"
+    command: server /data --console-address ":9001"
+    env_file:
+      - env/.minio.env
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"  # API MinIO
+      - "9001:9001"  # Console MinIO
+
+  db:
+    image: postgres:15-alpine
+    container_name: "dataviewer-db"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+
+  broker:
+    image: redis:7.0-alpine
+    container_name: "dataviewer-broker"
+    ports:
+      - "6379:6379"
+
+volumes:
+  minio_data:
